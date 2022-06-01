@@ -2,7 +2,8 @@ package org.example;
 
 import org.example.domain.Rol;
 import org.example.domain.User;
-import org.example.service.UserService;
+import org.example.service.Rol.RolService;
+import org.example.service.User.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,25 +20,21 @@ public class Main {
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
-    CommandLineRunner run(UserService userService) {
+    CommandLineRunner run(UserService userService, RolService rolService) {
         return args -> {
-            userService.saveRol(new Rol(null, "ROLE_USER"));
-            userService.saveRol(new Rol(null, "ROLE_MANAGER"));
-            userService.saveRol(new Rol(null, "ROLE_ADMIN"));
-            userService.saveRol(new Rol(null, "ROLE_SUPER_ADMIN"));
+            rolService.saveRol(new Rol(null, "ROLE_ADMIN"));
+            rolService.saveRol(new Rol(null, "ROLE_OPERATOR"));
 
-            userService.saveUser(new User(null,"Alejandro Pirez","ajpirez", "123456", new ArrayList<>()));
-            userService.saveUser(new User(null,"Prueba","prueba", "prueba123456", new ArrayList<>()));
+            userService.saveUser(new User(null, "Alejandro Pirez", "ajpirez", "123456", new ArrayList<>()));
+            userService.saveUser(new User(null, "Operador", "operator", "operator123456", new ArrayList<>()));
 
-            userService.addRoleToUser("ajpirez","ROLE_SUPER_ADMIN");
-            userService.addRoleToUser("ajpirez","ROLE_ADMIN");
-            userService.addRoleToUser("ajpirez","ROLE_USER");
-            userService.addRoleToUser("prueba","ROLE_USER");
-            userService.addRoleToUser("prueba","ROLE_MANAGER");
+            rolService.addRoleToUser("ajpirez", "ROLE_ADMIN");
+            rolService.addRoleToUser("operator", "ROLE_OPERATOR");
         };
     }
 }

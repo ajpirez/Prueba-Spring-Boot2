@@ -1,10 +1,8 @@
-package org.example.service;
+package org.example.service.User;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.domain.Rol;
 import org.example.domain.User;
-import org.example.repo.RolRepo;
 import org.example.repo.UserRepo;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +23,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepo userRepo;
-    private final RolRepo rolRepo;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -35,19 +32,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepo.save(user);
     }
 
-    @Override
-    public Rol saveRol(Rol rol) {
-        log.info("Saving new role {} to the database", rol.getName());
-        return rolRepo.save(rol);
-    }
 
-    @Override
-    public void addRoleToUser(String username, String rolName) {
-        log.info("Adding role {} to user {}", rolName, username);
-        User user = userRepo.findByUsername(username);
-        Rol rol = rolRepo.findByName(rolName);
-        user.getRoles().add(rol);
-    }
 
     @Override
     public User getUser(String username) {
@@ -61,20 +46,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepo.findAll();
     }
 
+    @Override
+    public void deleteUser(Long id) {
+        log.info("Deleted user with id {}", id);
+        userRepo.deleteById(id);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("User not found in the databse");
+            throw new UsernameNotFoundException("User not found in the database");
         }
-//        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//        user.getRoles().forEach(rol -> {
-//            authorities.add(new SimpleGrantedAuthority(rol.getName()));
-//        });
-        return new org.springframework.security.core.userdetails.User(username, user.getPassword(), new ArrayList<>());
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        user.getRoles().forEach(rol -> {
+            authorities.add(new SimpleGrantedAuthority(rol.getName()));
+        });
+        return new org.springframework.security.core.userdetails.User(username, user.getPassword(), authorities);
     }
-
 }
 
 
