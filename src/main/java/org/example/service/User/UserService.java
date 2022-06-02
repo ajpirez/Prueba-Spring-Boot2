@@ -1,7 +1,6 @@
 package org.example.service.User;
 
-import org.example.domain.Rol;
-import org.example.domain.User;
+import org.example.domain.Auth.User;
 
 import java.util.List;
 

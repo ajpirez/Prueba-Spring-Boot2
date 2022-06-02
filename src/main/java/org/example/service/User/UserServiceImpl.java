@@ -2,8 +2,8 @@ package org.example.service.User;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.domain.User;
-import org.example.repo.UserRepo;
+import org.example.domain.Auth.User;
+import org.example.repo.Auth.UserRepo;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

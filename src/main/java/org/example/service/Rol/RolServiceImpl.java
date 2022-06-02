@@ -2,10 +2,10 @@ package org.example.service.Rol;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.domain.Rol;
-import org.example.domain.User;
-import org.example.repo.RolRepo;
-import org.example.repo.UserRepo;//
+import org.example.domain.Auth.Rol;
+import org.example.domain.Auth.User;
+import org.example.repo.Auth.RolRepo;
+import org.example.repo.Auth.UserRepo;//
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
