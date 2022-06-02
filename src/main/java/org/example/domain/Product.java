@@ -32,6 +32,6 @@ public class Product {
     private  ContainerType containerType;
     private Integer lote;
 
-    @OneToOne(mappedBy = "product")
+    @OneToOne(mappedBy = "product")// La relacion no es OneToOne
     private Section section;
 }

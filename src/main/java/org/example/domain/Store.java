@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "store")
+@Table(name = "store")//Store seria la BD, no te hablan de varios almacenes, sino de uno
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

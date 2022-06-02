@@ -21,7 +21,7 @@ public class User {
     @Column(name = "username", nullable = false, unique = true)
     private String username;
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)//Comprobaste en BD que se crea bien? con los id y todo?
     private Collection<Rol> roles = new ArrayList<>();
 
 }

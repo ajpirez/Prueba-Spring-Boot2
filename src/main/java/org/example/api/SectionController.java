@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Section")
+@RequestMapping("/api/Section")//No mayusculas, aqui las mismas anotaciones que para Product
 @RequiredArgsConstructor
 @Slf4j
 public class SectionController {
@@ -27,7 +27,7 @@ public class SectionController {
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<Section> getSection(@PathVariable() Long id) {
+    public Optional<Section> getSection(@PathVariable() Long id) {//No devuelvas Optional nunca, devuelve el objeto de adentro y maneja la excepcion en un Exception Handler
         return sectionService.getSection(id);
     }
 

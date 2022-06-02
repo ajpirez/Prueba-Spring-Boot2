@@ -3,7 +3,7 @@ package org.example.domain.Utils.Enum;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public enum ContainerType {
+public enum ContainerType { //Bien por el enum, es asi, haz uno para los Roles tambien
     CARTON("Cartón"),
     PLASTICO("Plástico"),
     CRISTAL("Cristal"),

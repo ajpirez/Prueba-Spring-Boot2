@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-@Slf4j
+@Slf4j// Cambiar a Log4j2, cuanto antes mejor, que despues cuesta mas cambiar
 public class RolServiceImpl implements RolService {
 
     private final UserRepo userRepo;
@@ -22,7 +22,7 @@ public class RolServiceImpl implements RolService {
 
     @Override
     public List<Rol> getRoles() {
-        log.info("Show all roles");
+        log.info("Show all roles");//Para los logs revisa Spring AOP, que es como los Hooks
         return rolRepo.findAll();
     }
 

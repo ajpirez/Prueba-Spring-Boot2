@@ -15,31 +15,31 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Product")
+@RequestMapping("/api/Product")//No utilices mayuscula en ningun endpoint, al igual que para ningun directorio, por ejemplo Auth
 @RequiredArgsConstructor
 @Slf4j
 public class ProductController {
     private final ProductService productService;
 
-    @GetMapping("")
+    @GetMapping("") //No hace falta el ("") puedes dejarlo @GetMapping
     public ResponseEntity<List<Product>> getProducts() {
         return ResponseEntity.ok(productService.getProducts());
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/{id}")//No hace falta el path puedes dejarlo @GetMapping("id")
     public Optional<Product> getProduct(@PathVariable() Long id) {
         return productService.getProduct(id);
     }
 
-    @PostMapping()
-    public ResponseEntity<Product> saveOrUpdateProduct(@RequestBody Product product) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/rol/save").toUriString());
+    @PostMapping()//No hace falta el () puedes dejarlo @PostMapping
+    public ResponseEntity<Product> saveOrUpdateProduct(@RequestBody Product product) {//Separa el guardar y el actualizar, al actualizar no le puedes dar response code 201, es 200
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/rol/save").toUriString()); //Encuentra como hacer el created, es una boberia pero es algo que vas a hacer todo el tiempo
         return ResponseEntity.created(uri).body(productService.saveOrUpdateProduct(product));
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/{id}")//Lo mismo que el GetMapping de arriba
     public ResponseEntity<String> deleteProduct(@PathVariable() Long id) {
         productService.deleteProduct(id);
-        return ResponseEntity.ok("Product deleted");
+        return ResponseEntity.ok("Product deleted");//No devuelvas String en el Body del ResponseEntity, devuelve un Objeto Respuesta
     }
 }

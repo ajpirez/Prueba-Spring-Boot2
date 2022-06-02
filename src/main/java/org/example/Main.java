@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 
+//Una talla buena aqui que da puntos, es aprender a trabajar con la Cache, es bastante sencillo, Baeldung
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {

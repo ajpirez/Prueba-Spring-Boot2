@@ -56,7 +56,7 @@
         </dependency>
         <dependency>
             <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
+            <artifactId>java-jwt</artifactId><!--No recomiendo trabajar con este jwt-->
             <version>3.19.2</version>
         </dependency>
 

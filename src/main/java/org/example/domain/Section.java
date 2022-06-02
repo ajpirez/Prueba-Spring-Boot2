@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "sections")
+@Table(name = "sections")//Recuerda, en singular, si quieres ponerme plural es plural a todo, pero, por convencion es todo singular
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

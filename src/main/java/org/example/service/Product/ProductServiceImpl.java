@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<Product> getProducts() {
+    public List<Product> getProducts() {//Revisa tambien lo de los DTO, solo trabajas con DAO, a veces ese es el 60% de los problemas en los CRUD, pista modelMapper
         return productRepo.findAll();
     }
 
@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(Long id) {
+    public void deleteProduct(Long id) {//Chequea el id si existe antes de eliminarlo, preferentemente aqui, no en el controller
         productRepo.deleteById(id);
     }
 }
