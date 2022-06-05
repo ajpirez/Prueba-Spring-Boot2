@@ -1,4 +1,4 @@
-package org.example.service.Section;
+package org.example.service.section;
 
 
 import org.example.domain.Section;

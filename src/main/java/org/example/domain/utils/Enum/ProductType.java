@@ -1,5 +1,9 @@
-package org.example.domain.Utils.Enum;
+package org.example.domain.utils.Enum;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public enum ProductType {
     ELECTRODOMESTICOS("Electrodomésticos"),
     CARNICOS("Cárnicos"),
@@ -8,12 +12,7 @@ public enum ProductType {
 
     private final String type;
 
-    ProductType(String productType) {
-        this.type = productType;
-    }
-
     public String getType() {
-
-        return this.type;
+        return type;
     }
 }

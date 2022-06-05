@@ -1,16 +1,17 @@
 package org.example;
 
-import org.example.domain.Auth.Rol;
-import org.example.domain.Auth.User;
 import org.example.domain.Product;
 import org.example.domain.Section;
+import org.example.domain.auth.Rol;
+import org.example.domain.auth.User;
 import org.example.domain.Store;
-import org.example.domain.Utils.Enum.ContainerType;
-import org.example.service.Product.ProductService;
-import org.example.service.Rol.RolService;
-import org.example.service.Section.SectionService;
-import org.example.service.Store.StoreService;
-import org.example.service.User.UserService;
+import org.example.domain.utils.Enum.ContainerType;
+import org.example.domain.utils.Enum.ProductType;
+import org.example.service.product.ProductService;
+import org.example.service.rol.RolService;
+import org.example.service.section.SectionService;
+import org.example.service.store.StoreService;
+import org.example.service.user.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //Una talla buena aqui que da puntos, es aprender a trabajar con la Cache, es bastante sencillo, Baeldung
 @SpringBootApplication
@@ -45,17 +47,30 @@ public class Main {
             rolService.addRoleToUser("ajpirez", "ROLE_ADMIN");
             rolService.addRoleToUser("operator", "ROLE_OPERATOR");
             //Store
-//            storeService.saveOrUpdateStore(new Store(null, "Almacen1"));
-            Store store1 = storeService.saveOrUpdateStore(new Store(null, "Almacen2", new ArrayList<>()));
-            //Product
-            ContainerType type = ContainerType.CARTON;
-            System.out.println(type);
+            Store st1 = new Store(null, "Almacen2", null);
+            st1.setName("Almacen2");
+            st1.setSections(new ArrayList<>());
 
-//                Product product1 = productService.saveOrUpdateProduct(new Product(null,type,10.2,"blue",10.2,true,23,12,new Section()));
+            Section s1 = new Section();
+            s1.setSize(10.2);
+            s1.setProductType(ProductType.ELECTRODOMESTICOS);
+            s1.setProducts(new ArrayList<>());
+            s1.setStore(st1);
+//            sectionService.saveOrUpdateSection(s1);
+
+            Product p1 = new Product(null, 10.2, "blue", 10.2, true, ContainerType.CARTON, 12, s1);
+
+            productService.saveOrUpdateProduct(p1);
 
 //            System.out.println(((Object)containerType[0]).getClass().getSimpleName());
             //((Object)myInteger).getClass().getSimpleName())
-//            Section section = new Section(null, 10.2, 5, 5);
+//            Section s1 = new Section();
+//            s1.setId(null);
+//            s1.setSize(10.2);
+//            s1.setProduct(p1);
+//            s1.setStore(st1);
+//            sectionService.saveOrUpdateSection(s1);
+//            Section section = sectionService.saveOrUpdateSection(new Section(null, 10.2, p1, st1));
 //            sectionService.saveOrUpdateSection(new Section(null, 10.4, product1, store1));
 
         };

@@ -1,6 +1,6 @@
-package org.example.service.User;
+package org.example.service.user;
 
-import org.example.domain.Auth.User;
+import org.example.domain.auth.User;
 
 import java.util.List;
 

@@ -1,17 +1,15 @@
 package org.example.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.example.domain.Auth.Rol;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "store")//Store seria la BD, no te hablan de varios almacenes, sino de uno
@@ -22,6 +20,7 @@ public class Store {
     private String name;
 
     @OneToMany(mappedBy = "store")
-    private List<Section> section = new ArrayList<>();
+    @JsonIgnoreProperties(value="store")
+    private List<Section> sections = new ArrayList<>();
 
 }

@@ -1,4 +1,4 @@
-package org.example.domain.Auth;
+package org.example.domain.auth;
 
 import lombok.*;
 

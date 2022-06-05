@@ -1,8 +1,9 @@
-package org.example.service.Product;
+package org.example.service.product;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.domain.Product;
+import org.example.domain.Section;
 import org.example.repo.ProductRepo;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> getProduct(Long id) {
-        return productRepo.findById(id);
+        return Optional.of(productRepo.findById(id).orElse(new Product()));
+
     }
 
     @Override

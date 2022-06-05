@@ -1,8 +1,9 @@
-package org.example.service.Section;
+package org.example.service.section;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.domain.Section;
+import org.example.domain.Store;
 import org.example.repo.SectionRepo;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +27,12 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public Optional<Section> getSection(Long id) {
-        return sectionRepo.findById(id);
+        return Optional.of(sectionRepo.findById(id).orElse(new Section()));
     }
 
     @Override
-    public Section saveOrUpdateSection(Section Section) {
-        return sectionRepo.save(Section);
+    public Section saveOrUpdateSection(Section section) {
+        return sectionRepo.save(section);
     }
 
     @Override

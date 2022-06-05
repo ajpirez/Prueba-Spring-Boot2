@@ -1,6 +1,7 @@
-package org.example.service.Rol;
+package org.example.service.rol;
 
-import org.example.domain.Auth.Rol;
+import org.example.domain.auth.Rol;
+import org.example.domain.utils.Enum.RolType;
 
 import java.util.List;
 

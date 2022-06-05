@@ -2,10 +2,8 @@ package org.example.api;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.domain.Product;
 import org.example.domain.Section;
-import org.example.service.Product.ProductService;
-import org.example.service.Section.SectionService;
+import org.example.service.section.SectionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,20 +13,20 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Section")//No mayusculas, aqui las mismas anotaciones que para Product
+@RequestMapping("/api/section")//No mayusculas, aqui las mismas anotaciones que para Product
 @RequiredArgsConstructor
 @Slf4j
 public class SectionController {
     private final SectionService sectionService;
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<List<Section>> getSections() {
         return ResponseEntity.ok(sectionService.getSections());
     }
 
-    @GetMapping(path = "/{id}")
-    public Optional<Section> getSection(@PathVariable() Long id) {//No devuelvas Optional nunca, devuelve el objeto de adentro y maneja la excepcion en un Exception Handler
-        return sectionService.getSection(id);
+    @GetMapping("/{id}")
+    public Section getSection(@PathVariable() Long id) {//No devuelvas Optional nunca, devuelve el objeto de adentro y maneja la excepcion en un Exception Handler
+        return sectionService.getSection(id).get();
     }
 
     @PostMapping()

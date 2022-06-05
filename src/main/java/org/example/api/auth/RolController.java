@@ -1,10 +1,10 @@
-package org.example.api.Auth;
+package org.example.api.auth;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.api.utils.RoleToUSerForm;
-import org.example.domain.Auth.Rol;
-import org.example.service.Rol.RolService;
+import org.example.domain.auth.Rol;
+import org.example.service.rol.RolService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -19,13 +19,13 @@ import java.util.List;
 public class RolController {
     private final RolService rolService;
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<List<Rol>> getRol() {
         return ResponseEntity.ok(rolService.getRoles());
     }
 
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<Rol> saveRol(@RequestBody Rol rol) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/rol/save").toUriString());
         return ResponseEntity.created(uri).body(rolService.saveRol(rol));

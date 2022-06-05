@@ -1,27 +1,33 @@
 package org.example.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+import org.example.domain.utils.Enum.ProductType;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "sections")//Recuerda, en singular, si quieres ponerme plural es plural a todo, pero, por convencion es todo singular
+@Table(name = "section")
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Enumerated(value = EnumType.STRING)
+    @Column(nullable = false)
+    private ProductType productType;
     private Double size;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
-    private Product product;
+    @OneToMany(mappedBy = "section")
+    @JsonIgnoreProperties(value="section")
+    private List<Product> products;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "store_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "store_id")
+    @JsonIgnoreProperties(value={"section"})
     private Store store;
 }

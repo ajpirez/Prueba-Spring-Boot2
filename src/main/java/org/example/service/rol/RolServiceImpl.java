@@ -1,11 +1,12 @@
-package org.example.service.Rol;
+package org.example.service.rol;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.domain.Auth.Rol;
-import org.example.domain.Auth.User;
-import org.example.repo.Auth.RolRepo;
-import org.example.repo.Auth.UserRepo;//
+import org.example.domain.auth.Rol;
+import org.example.domain.auth.User;
+import org.example.domain.utils.Enum.RolType;
+import org.example.repo.auth.RolRepo;
+import org.example.repo.auth.UserRepo;//
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -33,10 +34,10 @@ public class RolServiceImpl implements RolService {
     }
 
     @Override
-    public void addRoleToUser(String username, String rolName) {
-        log.info("Adding role {} to user {}", rolName, username);
+    public void addRoleToUser(String username, String role) {
+        log.info("Adding role {} to user {}", role, username);
         User user = userRepo.findByUsername(username);
-        Rol rol = rolRepo.findByName(rolName);
+        Rol rol = rolRepo.findByName(role);
         user.getRoles().add(rol);
     }
 }

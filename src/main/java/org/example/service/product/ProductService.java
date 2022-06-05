@@ -1,4 +1,4 @@
-package org.example.service.Product;
+package org.example.service.product;
 
 import org.example.domain.Product;
 
